@@ -8,6 +8,7 @@ import { Schema, model, Document} from 'mongoose';
     picture: string;
     price: number;
     creatorId: string;
+    like: number;
   }
 
 
@@ -19,11 +20,12 @@ const TutoringSchema = new Schema<TutoringI>({
     picture: { type: String, required: true },
     price: { type: Number, required: true },
     creatorId: { type: String, required: true },
+    like: { type: Number, required: false },
   });
 
 
 // 3. Create a Model.
-export const TutoringModel = model<TutoringI>('Tutoring', TutoringSchema);                         //porq no me deja usar export default cuando tengo mas de un export?
+export const TutoringModel = model<TutoringI>('Tutoring2', TutoringSchema);                         //porq no me deja usar export default cuando tengo mas de un export?
 
 
 
