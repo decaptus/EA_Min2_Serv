@@ -99,6 +99,28 @@ export const likeTutoring = async (req:Request, res:Response) => {
     res.json(updatedTutoring);
 }
 
+//UNLIKE
+export const unlikeTutoring = async (req:Request, res:Response) => {
+
+    
+    const { id } = req.params;                                                 // o usar "const id = req?.params?.id;"  por ejemplo??
+    const updatedTutoring =
+        {
+            creatorName: `${req.body.creatorName}`,
+            subject: `${req.body.subject}`,
+            description: `${req.body.description}`,
+            picture: `${req.body.picture}`,
+            price: req.body.price,
+            creatorId: `${req.body.creatorId}`,
+            like: req.body.like - 1,
+        }
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+
+    await TutoringModel.findByIdAndUpdate(id, updatedTutoring, { new: true });
+
+    res.json(updatedTutoring);
+}
+
 
 //DELETE
 export const deleteTutoring = async (req:Request, res:Response) => {
